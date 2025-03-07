@@ -1,4 +1,16 @@
-# Ignore Python cache
+﻿# Ignore Python cache
 __pycache__/
 *.pyc
+
+# Ignore Virtual Environment (Agar Local vich rakhni hai)
+venv/
+
+# Ignore Logs & Temp Files
 logs/
+*.log
+debug.log
+
+# Ignore Large Datasets (Agar sirf local ch chahide)
+data/
+*.csv
+*.db
