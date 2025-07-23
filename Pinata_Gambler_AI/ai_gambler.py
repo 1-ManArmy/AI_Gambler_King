@@ -9,8 +9,6 @@ from PIL import ImageGrab
 import os
 import logging
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from selenium.webdriver.firefox.service import Service
 from datetime import datetime
 from collections import Counter
 
@@ -21,7 +19,6 @@ BASE_PATH = Path(__file__).parent
 TACTIC_PATH = BASE_PATH / "ruleset" / "tactic.json"
 SCATTER_TEMPLATE_PATH = BASE_PATH / "assets" / "scatter_template.png"
 LOG_FILE = BASE_PATH / "experience_log.json"
-GECKO_PATH = r"C:\Users\Yenkh\1-ManArmy\OneDrive\professorai\Gambler_Pinata_AI\geckodriver.exe"
 
 DEFAULT_THRESHOLD = 3
 DEFAULT_GAME_URL = "https://example.com"
@@ -66,18 +63,24 @@ if region_input:
 
 # ===================== BROWSER LAUNCH =====================
 
-print("🌐 Launching Firefox with Selenium...")
-options = FirefoxOptions()
-options.headless = False
+print("🌐 Launching Chrome with Selenium...")
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from webdriver_manager.chrome import ChromeDriverManager
+
+options = ChromeOptions()
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+# options.add_argument("--headless")  # Uncomment for headless mode
 
 try:
-    service = Service(executable_path=GECKO_PATH)
-    driver = webdriver.Firefox(service=service, options=options)
+    service = ChromeService(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
     driver.get(game_url)
     driver.maximize_window()
     print(f"✅ Game loaded: {game_url}")
 except Exception as e:
-    print(f"❌ Failed to launch Firefox: {e}")
+    print(f"❌ Failed to launch Chrome: {e}")
     exit()
 
 time.sleep(10)  # Let game load
@@ -116,7 +119,7 @@ def log_event(event_type, message):
     try:
         with open(LOG_FILE, "r") as f:
             logs = json.load(f)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         logs = []
 
     logs.append(event)

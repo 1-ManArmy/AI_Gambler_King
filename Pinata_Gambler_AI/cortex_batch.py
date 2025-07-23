@@ -28,12 +28,12 @@ def query_brain(prompt):
     """
     print("🔍 Asking Brain:", prompt)
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-4",
             messages=[{"role": "user", "content": prompt}]
         )
         return response.choices[0].message.content.strip()
-    except openai.error.OpenAIError as e:
+    except Exception as e:
         print(f"❌ OpenAI API Error: {e}")
         return "⚠️ Unable to process your request at the moment."
 
@@ -44,9 +44,13 @@ def query_brain_with_retry(prompt, retries=3, delay=2):
     for attempt in range(retries):
         try:
             return query_brain(prompt)
-        except openai.error.RateLimitError:
-            print(f"⚠️ Rate limit exceeded. Retrying in {delay} seconds...")
-            time.sleep(delay)
+        except Exception as e:
+            if "rate_limit" in str(e).lower():
+                print(f"⚠️ Rate limit exceeded. Retrying in {delay} seconds...")
+                time.sleep(delay)
+            else:
+                print(f"❌ Error: {e}")
+                break
     return "⚠️ Unable to process your request after multiple attempts."
 
 if __name__ == "__main__":
