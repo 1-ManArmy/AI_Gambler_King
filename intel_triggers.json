@@ -1,5 +1,0 @@
-﻿{
-  "watch_symbols": ["scatter", "wild", "bonus"],
-  "multiplier_hot": ["x50", "x100"],
-  "auto_stop": true
-}
