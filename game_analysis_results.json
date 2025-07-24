@@ -1,0 +1,60 @@
+{
+  "game_info": {
+    "title": "Pinata Wins",
+    "url": "https://m.56myu5u3v.com/1492288/index.html?ot=AF64C68B-E04E-45E5-A4A3-3D7C2A34463D&btt=1&ops=gt61741327361818-gt6ta6eight4seven3&l=en&or=14ghohwq%3D56ami5i3j%3Dqca&__hv=2fMEUCIFCr8i03AvZCeXdw4o1daP%2BiKKvvU3bddzw8lEeWn2uRAiEAysTYMqIR8d6IWBwPVFJRZ31Fi38BAwnT0IPOz12BeP8%3D",
+    "window_size": {
+      "width": 1050,
+      "height": 660
+    },
+    "page_source_length": 576594
+  },
+  "buttons": {
+    "all_buttons": []
+  },
+  "display_elements": {
+    "balance": [],
+    "bet_amount": [],
+    "win_amount": []
+  },
+  "game_board": {
+    "canvas": {
+      "found": true,
+      "count": 1,
+      "location": {
+        "x": 374,
+        "y": 0
+      },
+      "size": {
+        "height": 515,
+        "width": 289
+      },
+      "center": {
+        "x": 518,
+        "y": 257
+      }
+    },
+    "div[class*='game']": {
+      "found": true,
+      "count": 2,
+      "location": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "height": 515,
+        "width": 1037
+      },
+      "center": {
+        "x": 518,
+        "y": 257
+      }
+    }
+  },
+  "betting_controls": {
+    "increase": [],
+    "decrease": [],
+    "spin": [],
+    "max_bet": []
+  },
+  "symbols": {}
+}

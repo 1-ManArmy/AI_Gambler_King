@@ -49,9 +49,9 @@ def main():
     modules_passed += test_import("utils.memory_manager", "Memory management")
     
     # Test AI modules
-    modules_passed += test_import("Pinata_Gambler_AI.ai_gambler", "Main AI gambler")
-    modules_passed += test_import("Pinata_Gambler_AI.chroma_brain", "Chrome brain module")
-    modules_passed += test_import("Pinata_Gambler_AI.symbol_tracker", "Symbol tracking")
+    modules_passed += test_import("ai_gambler", "Main AI gambler")
+    modules_passed += test_import("chroma_brain", "Chrome brain module")
+    modules_passed += test_import("symbol_tracker", "Symbol tracking")
     
     print(f"\n📊 Project Modules: {modules_passed}/{modules_total} passed\n")
     

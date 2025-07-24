@@ -8,12 +8,19 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import time
 from webdriver_manager.chrome import ChromeDriverManager
 
-def browser_login():
+def browser_login(direct_game_url=None):
     # Fix for Selenium 4.x compatibility
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
     
     try:
+        # If direct game URL is provided, go straight to the game
+        if direct_game_url:
+            driver.get(direct_game_url)
+            print(f"✅ Navigating directly to game: {direct_game_url}")
+            time.sleep(5)
+            return driver
+        
         driver.get("https://t8thai.vip")  # 🎯 Game URL
         print("✅ Page loaded successfully!")
         

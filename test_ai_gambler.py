@@ -1,4 +1,4 @@
-# 🧪 Test Suite for AI Gambler Customized
+# 🧪 Test Suite for AI Gambler King
 # File: test_ai_gambler.py
 
 import unittest

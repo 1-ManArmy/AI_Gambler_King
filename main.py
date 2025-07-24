@@ -7,50 +7,54 @@ from utils.browser_login import browser_login
 
 print("🚀 Starting AI Gambler King...")
 
-# ✅ STEP 1: Login & Open Game
+# Direct Pinata Wins game URL
+PINATA_WINS_URL = "https://m.56myu5u3v.com/1492288/index.html?ot=AF64C68B-E04E-45E5-A4A3-3D7C2A34463D&btt=1&ops=gt61741327361818-gt6ta6eight4seven3&l=en&or=14ghohwq%3D56ami5i3j%3Dqca&__hv=2fMEUCIFCr8i03AvZCeXdw4o1daP%2BiKKvvU3bddzw8lEeWn2uRAiEAysTYMqIR8d6IWBwPVFJRZ31Fi38BAwnT0IPOz12BeP8%3D"
+
+# ✅ STEP 1: Open Game Directly
 try:
-    driver = browser_login()
-    print("✅ Browser session established!")
+    driver = browser_login(direct_game_url=PINATA_WINS_URL)
+    print("✅ Direct navigation to Pinata Wins game successful!")
+    print("🎰 Game board should be loading...")
+    time.sleep(10)  # Give game time to load
 except Exception as e:
-    print(f"❌ Browser login failed: {e}")
+    print(f"❌ Browser setup failed: {e}")
     exit(1)
 
-def open_game():
+def check_game_ready():
+    """Check if the game is fully loaded and ready"""
     try:
+        print("🔍 Checking if game is ready...")
+        
+        # Wait for game elements to load
         time.sleep(5)
         
-        # Try multiple selectors for the game button
-        game_selectors = [
-            (By.XPATH, "//img[contains(@alt, 'Pinata Wins')]"),
-            (By.XPATH, "//img[contains(@alt, 'pinata')]"),
-            (By.XPATH, "//a[contains(text(), 'Pinata')]"),
-            (By.CSS_SELECTOR, "img[alt*='Pinata']"),
-            (By.CSS_SELECTOR, "a[href*='pinata']")
+        # Look for common game elements that indicate it's ready
+        game_ready_indicators = [
+            (By.TAG_NAME, "canvas"),  # Game canvas
+            (By.CSS_SELECTOR, "button[class*='spin']"),  # Spin button
+            (By.CSS_SELECTOR, "div[class*='game']"),  # Game container
+            (By.CSS_SELECTOR, "iframe"),  # Game iframe
         ]
         
-        game_button = None
-        for selector_type, selector_value in game_selectors:
+        for selector_type, selector_value in game_ready_indicators:
             try:
-                game_button = driver.find_element(selector_type, selector_value)
-                print(f"✅ Found game button with: {selector_type}, {selector_value}")
-                break
+                element = driver.find_element(selector_type, selector_value)
+                if element:
+                    print(f"✅ Game ready indicator found: {selector_type}, {selector_value}")
+                    return True
             except NoSuchElementException:
                 continue
         
-        if game_button:
-            game_button.click()
-            print("🎰 Entered Game!")
-        else:
-            print("⚠️ Game button not found. Manual navigation may be required.")
-            print("📋 Current URL:", driver.current_url)
-            input("Press Enter after manually opening the game to continue...")
-            
+        print("⚠️ Game readiness unclear. Proceeding anyway...")
+        print("📋 Current URL:", driver.current_url)
+        return True
+        
     except Exception as e:
-        print(f"❌ Error opening game: {e}")
-        print("📋 Continuing anyway...")
+        print(f"⚠️ Error checking game readiness: {e}")
+        return True
 
-# Try to open the game
-open_game()
+# Check if game is ready
+check_game_ready()
 
 # ✅ STEP 2: AI Auto Gameplay
 scatter_count = 0

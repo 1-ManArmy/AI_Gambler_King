@@ -1,8 +1,0 @@
-opencv-python
-numpy
-pyautogui
-pillow
-opencv-python-headless
-pytesseract
-selenium
-webdriver-manager

@@ -15,9 +15,9 @@ def log_action(action):
     logging.info(action)
 
 def start_ai_gambler():
-    print("🚀 Starting AI Gambler...")
-    log_action("AI Gambler started.")
-    # Call the AI Gambler script here (e.g., os.system("python ai_gambler.py"))
+    print("🚀 Starting AI Gambler King...")
+    log_action("AI Gambler King started.")
+    # Call the AI Gambler King script here (e.g., os.system("python ai_gambler.py"))
 
 def toggle_hot_mode():
     global hot_mode
@@ -35,7 +35,7 @@ def launch_ui():
     while True:
         print("\n🧠 Cortex Interface")
         print("====================")
-        print("1. Start AI Gambler")
+        print("1. Start AI Gambler King")
         print("2. Toggle Hot Mode")
         print("3. Trigger Report")
         print("4. Exit")

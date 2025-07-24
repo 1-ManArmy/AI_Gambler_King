@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from collections import Counter
 
-MEMORY_FILE = Path("c:/Users/Yenkh/1-ManArmy/OneDrive/professorai/Gambler_Pinata_AI/experience_log.json")
+MEMORY_FILE = Path("experience_log.json")
 OUTPUT_FILE = Path("memory") / "training_insights.json"
 
 if not MEMORY_FILE.exists():

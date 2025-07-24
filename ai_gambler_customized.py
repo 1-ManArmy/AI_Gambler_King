@@ -1,4 +1,4 @@
-# ✅ AI Gambler Custom Config Loader
+# ✅ AI Gambler King - Custom Configuration Loader
 # File: ai_gambler_customized.py
 
 import json
